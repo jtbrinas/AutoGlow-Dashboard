@@ -11,19 +11,109 @@
     <script src="js/chart-device-data.js" type="text/javascript" charset="utf-8"></script>
     <link href="css/style.css" rel="stylesheet" />
 
-    <title>Temperature &amp; Humidity Real-time Data</title>
+    <title>AutoGlow</title>
 </head>
 
 <body>
-    <h1 class="flexHeader">
-        <span>
+    <div class="header-section">
+        <div class="device-selector">
             <span id="deviceCount">0 devices</span>
             <select id="listOfDevices" class="select_box"></select>
-        </span>
-        <span>Temperature & Humidity Real-time Data</span>
-    </h1>
-    <div>
-        <canvas id="iotChart"></canvas>
+        </div>
+        <div class="title-section">
+            <h1 class="project-title">AutoGlow</h1>
+            <p class="project-authors">by Khanh Vu and Jeremy Brinas</p>
+        </div>
+        <div class="header-spacer"></div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-container">
+        <button class="tab-button active" data-tab="daily">Daily</button>
+        <button class="tab-button" data-tab="weekly">Weekly</button>
+    </div>
+
+    <!-- Daily Tab Content -->
+    <div id="daily-tab" class="tab-content active">
+        <!-- Light Status Indicator -->
+        <div class="light-indicator-panel">
+            <div class="light-indicator-wrapper">
+                <div id="lightIndicator" class="light-indicator off"></div>
+                <span class="light-indicator-label">Light Status</span>
+            </div>
+            <div class="status-details">
+                <div class="status-item-inline">
+                    <span class="status-label">Motion:</span>
+                    <span id="motionStatus" class="status-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="daily-stats">
+            <div class="stat-card">
+                <div class="stat-icon">💡</div>
+                <div class="stat-info">
+                    <span class="stat-label">Today's Light On Time</span>
+                    <span id="dailyOnTime" class="stat-value">0.00 s</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-info">
+                    <span class="stat-label">Today's Energy Consumed</span>
+                    <span id="dailyEnergy" class="stat-value">0.000000 J</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side by Side Charts -->
+        <div class="charts-row">
+            <div class="chart-container half">
+                <h3>Light On Time per Hour</h3>
+                <canvas id="lightStatusChart"></canvas>
+            </div>
+            <div class="chart-container half">
+                <h3>Energy Consumed (24h)</h3>
+                <canvas id="energyChart"></canvas>
+            </div>
+        </div>
+
+        <div class="event-log">
+            <h3>Recent Events</h3>
+            <div id="eventList" class="event-list"></div>
+        </div>
+    </div>
+
+    <!-- Weekly Tab Content -->
+    <div id="weekly-tab" class="tab-content">
+        <div class="weekly-averages">
+            <div class="avg-card">
+                <div class="avg-icon">💡</div>
+                <div class="avg-info">
+                    <span class="avg-label">Weekly Avg Light On Time</span>
+                    <span id="weeklyAvgOnTime" class="avg-value">--</span>
+                </div>
+            </div>
+            <div class="avg-card">
+                <div class="avg-icon">⚡</div>
+                <div class="avg-info">
+                    <span class="avg-label">Weekly Avg Energy Consumed</span>
+                    <span id="weeklyAvgEnergy" class="avg-value">--</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side by Side Charts -->
+        <div class="charts-row">
+            <div class="chart-container half">
+                <h3>Daily Light On Time (This Week)</h3>
+                <canvas id="weeklyOnTimeChart"></canvas>
+            </div>
+            <div class="chart-container half">
+                <h3>Daily Energy Consumed (This Week)</h3>
+                <canvas id="weeklyEnergyChart"></canvas>
+            </div>
+        </div>
     </div>
 </body>
 

@@ -51,9 +51,18 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
 (async () => {
   await eventHubReader.startReadMessage((message, date, deviceId) => {
     try {
+      // Extract payload from the event structure if present
+      // Data format: { event: { payload: { status, shuntVoltage_V, ... } } }
+      let iotData = message;
+      if (message && message.event && message.event.payload) {
+        iotData = message.event.payload;
+      } else if (message && message.payload) {
+        iotData = message.payload;
+      }
+
       const payload = {
-        IotData: message,
-        MessageDate: date || Date.now().toISOString(),
+        IotData: iotData,
+        MessageDate: date || new Date().toISOString(),
         DeviceId: deviceId,
       };
 
