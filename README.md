@@ -33,7 +33,7 @@ This repository contains the web dashboard backend for the AutoGlow project. It 
 2. Set environment variables:
    ```bash
    export IotHubConnectionString="iot-hub-connection-string"
-   export EventHubConsumerGroup="consumer-grou-name"
+   export EventHubConsumerGroup="consumer-group-name"
    ```
 
 3. Run the application:
